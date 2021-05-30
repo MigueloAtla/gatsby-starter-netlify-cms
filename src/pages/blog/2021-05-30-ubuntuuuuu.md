@@ -28,6 +28,8 @@ description: This treatise differs from the ordinary compendium mainly in its
   matter must not be separated from the form.
 featuredpost: true
 featuredimage: /img/15301.jpg
+secondimage: /img/blog-index.jpg
+markdown: asdfasdfasdfafaf
 tags:
   - design
 ---
