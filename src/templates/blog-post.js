@@ -28,11 +28,8 @@ export const BlogPostTemplate = ({
             <h1 className='title is-size-2 has-text-weight-bold is-bold-light'>
               {title}
             </h1>
-
-            <p>{md}</p>
-
-            <Img fixed={secondImage} />
-
+            {md && <p>{md}</p>}
+            {secondImage && <Img fixed={secondImage} />}
             <p>{description}</p>
             <PostContent content={content} />
             {tags && tags.length ? (
@@ -65,14 +62,21 @@ BlogPostTemplate.propTypes = {
 const BlogPost = ({ data }) => {
   const { markdownRemark: post } = data
 
+  const img =
+    post.frontmatter.secondimage !== null
+      ? post.frontmatter.secondimage.childImageSharp.fixed
+      : null
+  const md =
+    post.frontmatter.markdown !== null ? post.frontmatter.markdown : null
+
   return (
     <Layout>
       <BlogPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
-        secondImage={post.frontmatter.secondimage.childImageSharp.fixed}
-        md={post.frontmatter.markdown}
+        secondImage={img}
+        md={md}
         helmet={
           <Helmet titleTemplate='%s | Blog'>
             <title>{`${post.frontmatter.title}`}</title>
