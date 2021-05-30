@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { BlogPostTemplate } from '../../templates/blog-post'
 
 const BlogPostPreview = ({ entry, widgetFor }) => {
+  console.log(entry)
   const tags = entry.getIn(['data', 'tags'])
   return (
     <BlogPostTemplate
@@ -16,9 +17,9 @@ const BlogPostPreview = ({ entry, widgetFor }) => {
 
 BlogPostPreview.propTypes = {
   entry: PropTypes.shape({
-    getIn: PropTypes.func,
+    getIn: PropTypes.func
   }),
-  widgetFor: PropTypes.func,
+  widgetFor: PropTypes.func
 }
 
 export default BlogPostPreview
