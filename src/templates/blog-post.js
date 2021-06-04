@@ -15,9 +15,12 @@ export const BlogPostTemplate = ({
   title,
   helmet,
   secondImage,
-  md
+  md,
+  frases
 }) => {
   const PostContent = contentComponent || Content
+
+  console.log(frases)
 
   return (
     <section className='section'>
@@ -28,10 +31,21 @@ export const BlogPostTemplate = ({
             <h1 className='title is-size-2 has-text-weight-bold is-bold-light'>
               {title}
             </h1>
-            {md && <p>{md}</p>}
+
+            {typeof secondImage === 'string' && <img src={secondImage} />}
             {secondImage && <Img fixed={secondImage} />}
+            {md && <PostContent content={md} />}
             <p>{description}</p>
             <PostContent content={content} />
+            {frases &&
+              frases.map((f, i) => {
+                return (
+                  <div key={i}>
+                    <p>{f.author.name}</p>
+                    <p>{f.quote}</p>
+                  </div>
+                )
+              })}
             {tags && tags.length ? (
               <div style={{ marginTop: `4rem` }}>
                 <h4>Tags</h4>
@@ -62,6 +76,8 @@ BlogPostTemplate.propTypes = {
 const BlogPost = ({ data }) => {
   const { markdownRemark: post } = data
 
+  console.log(post)
+
   const img =
     post.frontmatter.secondimage !== null
       ? post.frontmatter.secondimage.childImageSharp.fixed
@@ -77,6 +93,7 @@ const BlogPost = ({ data }) => {
         description={post.frontmatter.description}
         secondImage={img}
         md={md}
+        frases={post.frontmatter.frases}
         helmet={
           <Helmet titleTemplate='%s | Blog'>
             <title>{`${post.frontmatter.title}`}</title>
@@ -112,6 +129,12 @@ export const pageQuery = graphql`
         description
         tags
         markdown
+        frases {
+          quote
+          author {
+            name
+          }
+        }
         secondimage {
           childImageSharp {
             fixed(width: 300, height: 300) {

@@ -3,22 +3,23 @@ import PropTypes from 'prop-types'
 import { BlogPostTemplate } from '../../templates/blog-post'
 
 const BlogPostPreview = ({ entry, widgetFor }) => {
-  console.log(entry)
   const tags = entry.getIn(['data', 'tags'])
   const img = entry.getIn(['data', 'secondimage'])
-  let secondImage
-  if (img !== null) {
-    secondImage = img.childImageSharp.fixed
-  }
-  const md = entry.getIn(['data', 'markdown'])
+  // let secondImage
+  // if (img !== null) {
+  //   secondImage = img.childImageSharp.fixed
+  // }
+  const frases = entry.getIn(['data', 'frases'])
+
   return (
     <BlogPostTemplate
       content={widgetFor('body')}
       description={entry.getIn(['data', 'description'])}
       tags={tags && tags.toJS()}
       title={entry.getIn(['data', 'title'])}
-      secondImage={secondImage && secondImage.toJS()}
-      md={md && md.toJS()}
+      md={widgetFor('markdown')}
+      secondImage={img && img}
+      frases={frases && frases.toJS()}
     />
   )
 }

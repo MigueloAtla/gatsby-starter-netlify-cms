@@ -29,7 +29,24 @@ description: This treatise differs from the ordinary compendium mainly in its
 featuredpost: true
 featuredimage: /img/15301.jpg
 secondimage: /img/blog-index.jpg
-markdown: asdfasdfasdfafaf
+markdown: |-
+  asdfasdfa***sdfafa***f
+
+  # Hola
+frases:
+  - quote: Everything is awesome!
+    author:
+      name: Emmet
+      avatar: /img/apple-touch-icon.png
+  - quote: Everything is cool!
+    author:
+      name: A dick
+      avatar: /img/emmet.jpg
+testimonials:
+  - quote: Everything is awesome!
+    author:
+      name: Emmet
+      avatar: /img/apple-touch-icon.png
 tags:
   - design
 ---

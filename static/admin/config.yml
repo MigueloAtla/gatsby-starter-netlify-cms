@@ -8,6 +8,8 @@ backend:
     uploadMedia: '[skip ci] Upload “{{path}}”'
     deleteMedia: '[skip ci] Delete “{{path}}”'
 
+local_backend: true
+
 media_folder: static/img
 public_folder: /img
 
@@ -27,6 +29,17 @@ collections:
       - {label: "Second Image", name: "secondimage", widget: image}
       - {label: "Md", name: "markdown", widget: "markdown"}
       - {label: "Body", name: "body", widget: "markdown"}
+      - label: "frases"
+        name: "frases"
+        widget: "list"
+        fields:
+          - {label: Quote, name: quote, widget: string, default: "Everything is awesome!"}
+          - label: Author
+            name: author
+            widget: object
+            fields:
+              - {label: Name, name: name, widget: string, default: "Emmet"}
+              - {label: Avatar, name: avatar, widget: image, default: "/img/emmet.jpg"}
       - {label: "Tags", name: "tags", widget: "list"}
 
   - name: "pages"
